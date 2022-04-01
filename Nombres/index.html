@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<style>
+		select{
+      background-color: lightgray;
+		}
+	</style>
+    <script>
+    function cargarNom() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    var nombres=this.responseText;
+    var lista_nombres=nombres.split(",");
+    var objeto_select=document.createElement("select");
+    for (i=0; i<lista_nombres.length; i++)
+        {
+        var objeto_option=document.createElement("option");
+        objeto_option.innerHTML=lista_nombres[i];
+        objeto_select.appendChild(objeto_option);
+        }  
+    document.getElementById("demo").appendChild(objeto_select);
+    }
+  };
+  xhttp.open("GET", "nombres.txt", true);
+  xhttp.send();
+}
+    </script>
+</head>
+<body  onload="cargarNom()">
+
+<div id="demo">
+  
+</div>
+
+</body>
+</html>
